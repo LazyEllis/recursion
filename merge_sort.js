@@ -5,12 +5,15 @@ const mergeSort = (array) => {
   const firstHalf = array.slice(0, halfLength);
   const secondHalf = array.slice(halfLength, array.length);
 
-  return mergeSort(firstHalf)[0] < mergeSort(secondHalf)[0]
-    ? [mergeSort(firstHalf)[0]].concat(
-        mergeSort(mergeSort(firstHalf).slice(1).concat(mergeSort(secondHalf)))
+  const sortedFirstHalf = mergeSort(firstHalf);
+  const sortedSecondHalf = mergeSort(secondHalf);
+
+  return sortedFirstHalf[0] < sortedSecondHalf[0]
+    ? [sortedFirstHalf[0]].concat(
+        mergeSort(sortedFirstHalf.slice(1).concat(sortedSecondHalf))
       )
-    : [mergeSort(secondHalf)[0]].concat(
-        mergeSort(mergeSort(secondHalf).slice(1).concat(mergeSort(firstHalf)))
+    : [sortedSecondHalf[0]].concat(
+        mergeSort(sortedSecondHalf.slice(1).concat(sortedFirstHalf))
       );
 };
 
