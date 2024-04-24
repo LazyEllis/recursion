@@ -14,4 +14,17 @@ const fibs = (number) => {
   return array;
 };
 
+const fibsRec = (number) => {
+  if (number === 1) {
+    return [0];
+  } else if (number === 2) {
+    return [0, 1];
+  } else {
+    return fibsRec(number - 1).concat([
+      fibsRec(number - 1).pop() + fibsRec(number - 2).pop(),
+    ]);
+  }
+};
+
 console.log(fibs(8));
+console.log(fibsRec(8));
