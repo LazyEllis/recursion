@@ -13,10 +13,13 @@ const fibs = (number) => {
 const fibsRec = (number) => {
   if (number === 1) return [0];
   else if (number === 2) return [0, 1];
-  else
-    return fibsRec(number - 1).concat(
-      fibsRec(number - 1).pop() + fibsRec(number - 2).pop()
-    );
+  else {
+    const prevFib = fibsRec(number - 1);
+    return [
+      ...prevFib,
+      prevFib[prevFib.length - 1] + prevFib[prevFib.length - 2],
+    ];
+  }
 };
 
 console.log(fibs(8));
